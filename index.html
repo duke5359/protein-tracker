@@ -10,44 +10,46 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="단백질트래커">
   <meta name="application-name" content="단백질트래커">
-  <meta name="theme-color" content="#f8fafc">
+  <meta name="theme-color" content="#f1f5f9">
 
-  <!-- 단백질 트래커 전용 고유 아이콘 파일 연결 -->
+  <!-- 전용 아이콘 연결 -->
   <link rel="apple-touch-icon" href="./protein-icon.png">
   <link rel="icon" type="image/png" href="./protein-icon.png">
 
   <!-- 폰트 불러오기 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #f8fafc;
+      --bg: #f1f5f9;
       --card-bg: #ffffff;
       --text-main: #0f172a;
-      --text-sub: #64748b;
+      --text-sub: #475569;
       --text-muted: #94a3b8;
-      --border: #e2e8f0;
+      --border-soft: #e2e8f0;
       --primary: #2563eb;
-      --radius: 20px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
     body {
       background-color: var(--bg);
       color: var(--text-main);
-      padding: 20px 16px 40px;
+      padding: 24px 16px 50px;
       max-width: 480px;
       margin: 0 auto;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     /* 상단 헤더 */
@@ -55,97 +57,184 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      padding: 0 4px;
     }
 
-    .header h1 {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
+    .header-left h1 {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.7px;
+      color: #0f172a;
+    }
+
+    .header-left p {
+      font-size: 13px;
+      color: var(--text-sub);
+      font-weight: 500;
+      margin-top: 2px;
     }
 
     .date-badge {
-      background: #eff6ff;
-      color: #2563eb;
+      background: #ffffff;
+      color: #1e40af;
       font-size: 13px;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid #bfdbfe;
-    }
-
-    /* 대시보드 카드 */
-    .dashboard-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 26px 20px 20px;
-      text-align: center;
-      box-shadow: 0 4px 16px rgba(148, 163, 184, 0.08);
-      border: 1px solid var(--border);
-      margin-bottom: 24px;
-    }
-
-    .current-val {
-      font-size: 46px;
       font-weight: 800;
-      color: #1e3a8a;
-      line-height: 1;
-      margin-bottom: 8px;
+      padding: 7px 14px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      border: 1px solid #cbd5e1;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    .current-val span {
-      font-size: 24px;
-      font-weight: 700;
-      color: #3b82f6;
-      margin-left: 2px;
+    /* 메인 대시보드 (애플 피트니스 감성) */
+    .dashboard-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 26px 22px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.02);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .target-desc {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-sub);
+    .dash-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       margin-bottom: 16px;
     }
 
-    /* 프로그레스 바 */
-    .progress-track {
-      width: 100%;
-      height: 14px;
-      background: #f1f5f9;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 14px;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #60a5fa, #2563eb);
-      border-radius: 10px;
-      transition: width 0.3s ease;
+    .dash-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     .target-change-btn {
-      background: none;
-      border: none;
-      font-size: 13px;
-      font-weight: 600;
-      color: #64748b;
-      text-decoration: underline;
-      cursor: pointer;
-      padding: 4px 8px;
-    }
-
-    /* 섹션 공통 타이틀 */
-    .section-title {
-      font-size: 15px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      font-size: 12px;
       font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 12px;
-      padding-left: 2px;
+      color: #475569;
+      border-radius: 12px;
+      padding: 5px 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: background 0.2s;
     }
 
-    /* 간편 즉시 가산 3열 그리드 */
+    .target-change-btn:active {
+      background: #e2e8f0;
+    }
+
+    .dash-main {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .current-val {
+      font-size: 54px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: #0f172a;
+      line-height: 1;
+    }
+
+    .unit-text {
+      font-size: 26px;
+      font-weight: 800;
+      color: #2563eb;
+      margin-left: 2px;
+    }
+
+    .goal-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .goal-badge {
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    /* 선명하고 매끄러운 프로그레스 바 */
+    .progress-container {
+      position: relative;
+      width: 100%;
+      height: 16px;
+      background: #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+      border-radius: 12px;
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+    }
+
+    .progress-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .remain-text {
+      color: #64748b;
+    }
+
+    .percent-text {
+      color: #2563eb;
+      font-weight: 900;
+    }
+
+    /* 섹션 제목 */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: #0f172a;
+    }
+
+    .section-hint {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* 12개 간편 가산 그리드 */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -154,128 +243,154 @@
     }
 
     .quick-btn {
-      border-radius: 16px;
-      padding: 14px 6px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 15px 8px;
       text-align: center;
       cursor: pointer;
-      border: 1px solid transparent;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
-      transition: transform 0.1s ease, filter 0.1s ease;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      border: 1.5px solid transparent;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
       touch-action: manipulation;
     }
 
     .quick-btn:active {
-      transform: scale(0.96);
-      filter: brightness(0.96);
+      transform: scale(0.95);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
     }
 
     .quick-name {
       font-size: 13px;
-      font-weight: 600;
-      color: #334155;
+      font-weight: 700;
+      color: #1e293b;
       letter-spacing: -0.3px;
     }
 
     .quick-val {
       font-size: 15px;
-      font-weight: 800;
+      font-weight: 900;
+      padding: 3px 10px;
+      border-radius: 12px;
+      display: inline-block;
+      line-height: 1.2;
     }
 
-    /* 테마별 파스텔 컬러 블록 */
-    /* 1. 오렌지/코랄 */
+    /* 1. 코랄 앤 앰버 (육류/식사류) */
     .theme-coral {
-      background: #fff7ed;
+      background: #fffaf5;
       border-color: #ffedd5;
     }
-    .theme-coral .quick-name { color: #9a3412; }
-    .theme-coral .quick-val { color: #ea580c; }
+    .theme-coral .quick-name { color: #7c2d12; }
+    .theme-coral .quick-val {
+      background: #ffedd5;
+      color: #ea580c;
+    }
 
-    /* 2. 스카이블루 */
+    /* 2. 오션 스카이 (닭가슴살/프로틴/두부) */
     .theme-sky {
-      background: #f0f9ff;
+      background: #f8fafc;
       border-color: #e0f2fe;
     }
-    .theme-sky .quick-name { color: #075985; }
-    .theme-sky .quick-val { color: #0284c7; }
+    .theme-sky .quick-name { color: #0c4a6e; }
+    .theme-sky .quick-val {
+      background: #e0f2fe;
+      color: #0284c7;
+    }
 
-    /* 3. 웜 옐로우 */
+    /* 3. 골든 옐로우 (달걀/너겟/콩) */
     .theme-yellow {
-      background: #fefce8;
+      background: #fefdf5;
       border-color: #fef08a;
     }
-    .theme-yellow .quick-name { color: #854d0e; }
-    .theme-yellow .quick-val { color: #d97706; }
+    .theme-yellow .quick-name { color: #713f12; }
+    .theme-yellow .quick-val {
+      background: #fef08a;
+      color: #b45309;
+    }
 
-    /* 4. 부드러운 라벤더 */
+    /* 4. 로열 바이올렛 (견과/어육/유부) */
     .theme-purple {
-      background: #faf5ff;
+      background: #faf7fd;
       border-color: #f3e8ff;
     }
-    .theme-purple .quick-name { color: #6b21a8; }
-    .theme-purple .quick-val { color: #9333ea; }
+    .theme-purple .quick-name { color: #581c87; }
+    .theme-purple .quick-val {
+      background: #f3e8ff;
+      color: #7e22ce;
+    }
 
-    /* 직접 음식 입력 */
-    .input-box {
-      background: var(--card-bg);
-      border-radius: var(--radius);
+    /* 직접 음식 입력 카드 */
+    .input-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
       padding: 16px;
-      border: 1px solid var(--border);
-      box-shadow: 0 2px 10px rgba(148, 163, 184, 0.05);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+      border: 1px solid var(--border-soft);
       margin-bottom: 24px;
     }
 
     .input-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .input-field {
       width: 100%;
       background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 12px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-sm);
       padding: 12px 14px;
       font-size: 14px;
+      font-weight: 600;
       color: var(--text-main);
       outline: none;
+      transition: all 0.2s;
+    }
+
+    .input-field::placeholder {
+      color: #94a3b8;
+      font-weight: 500;
     }
 
     .input-field:focus {
-      border-color: #3b82f6;
+      border-color: #2563eb;
       background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
     }
 
-    .add-submit-btn {
+    .add-btn {
       width: 100%;
-      background: #2563eb;
-      color: white;
+      background: #0f172a;
+      color: #ffffff;
       border: none;
-      padding: 13px;
-      border-radius: 12px;
+      padding: 14px;
+      border-radius: var(--radius-sm);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+      transition: transform 0.1s, background 0.15s;
     }
 
-    .add-submit-btn:active {
+    .add-btn:active {
       transform: scale(0.98);
-      background: #1d4ed8;
+      background: #1e293b;
     }
 
-    /* 섭취 내역 리스트 */
+    /* 섭취 내역 카드 */
     .history-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      border: 1px solid var(--border);
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+      border: 1px solid var(--border-soft);
       min-height: 80px;
     }
 
@@ -283,47 +398,67 @@
       text-align: center;
       color: var(--text-muted);
       font-size: 13px;
-      padding: 24px 0;
+      font-weight: 600;
+      padding: 28px 0;
     }
 
     .history-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 4px;
-      border-bottom: 1px dashed #e2e8f0;
-      font-size: 13px;
+      padding: 12px 4px;
+      border-bottom: 1px solid #f1f5f9;
     }
 
     .history-item:last-child {
       border-bottom: none;
     }
 
-    .item-name {
-      font-weight: 600;
-      color: #334155;
+    .item-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .item-val-wrap {
+    .item-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .item-time {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .item-right {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .item-val {
-      font-weight: 700;
+    .item-amount {
+      font-size: 15px;
+      font-weight: 900;
       color: #2563eb;
     }
 
     .item-del-btn {
-      background: #fee2e2;
+      background: #f1f5f9;
       border: none;
-      color: #ef4444;
+      color: #94a3b8;
       font-size: 11px;
       font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 6px;
+      padding: 5px 8px;
+      border-radius: 8px;
       cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .item-del-btn:hover {
+      background: #fee2e2;
+      color: #ef4444;
     }
   </style>
 </head>
@@ -331,24 +466,47 @@
 
   <!-- 헤더 -->
   <div class="header">
-    <h1>단백질 트래커</h1>
-    <div class="date-badge" id="dateBadge">오늘</div>
+    <div class="header-left">
+      <h1>단백질 트래커</h1>
+      <p>오늘의 영양 균형 채우기</p>
+    </div>
+    <div class="date-badge" id="dateBadge">🗓️ 오늘</div>
   </div>
 
   <!-- 대시보드 카드 -->
   <div class="dashboard-card">
-    <div class="current-val"><span id="currentAmount" style="font-size: 46px; font-weight: 800; color: #1e3a8a;">0</span><span>g</span></div>
-    <div class="target-desc">목표 <span id="targetAmount">70</span>g 달성 중 (<span id="percentText">0%</span>)</div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill"></div>
+    <div class="dash-top">
+      <span class="dash-label">Today's Intake</span>
+      <button type="button" class="target-change-btn" onclick="changeTarget()">⚙️ 목표 <span id="targetAmountDisplay">70</span>g 변경</button>
     </div>
-    <button type="button" class="target-change-btn" onclick="changeTarget()">목표치 변경</button>
+
+    <div class="dash-main">
+      <span class="current-val" id="currentAmount">0</span>
+      <span class="unit-text">g</span>
+    </div>
+
+    <div class="goal-text">
+      목표 <b id="targetAmount">70</b>g 중 <span class="goal-badge" id="statusBadge">시작 전</span>
+    </div>
+
+    <!-- 진행률 게이지 -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="progress-footer">
+      <span class="remain-text" id="remainText">남은 양: 70.0g</span>
+      <span class="percent-text" id="percentText">0%</span>
+    </div>
   </div>
 
-  <!-- 간편 즉시 가산 메뉴 (테마별 파스텔 블록) -->
-  <div class="section-title">간편 즉시 가산 메뉴</div>
+  <!-- 간편 즉시 가산 메뉴 -->
+  <div class="section-header">
+    <span class="section-title">간편 즉시 가산</span>
+    <span class="section-hint">터치 시 즉시 합산</span>
+  </div>
   <div class="quick-grid">
-    <!-- 1. 코랄 테마 -->
+    <!-- 코랄 그룹 (밀키트, 치즈빵, 불고기) -->
     <button type="button" class="quick-btn theme-coral" onclick="addProtein('밀키트', 15)">
       <span class="quick-name">밀키트</span>
       <span class="quick-val">+15g</span>
@@ -362,7 +520,7 @@
       <span class="quick-val">+20g</span>
     </button>
 
-    <!-- 2. 스카이 블루 테마 -->
+    <!-- 스카이 블루 그룹 (닭가슴살, 프로틴, 두부) -->
     <button type="button" class="quick-btn theme-sky" onclick="addProtein('닭가슴살 1조각', 23)">
       <span class="quick-name">닭가슴살 1조각</span>
       <span class="quick-val">+23g</span>
@@ -376,7 +534,7 @@
       <span class="quick-val">+10g</span>
     </button>
 
-    <!-- 3. 옐로우 테마 -->
+    <!-- 웜 옐로우 그룹 (달걀, 치킨너겟, 볶은 콩) -->
     <button type="button" class="quick-btn theme-yellow" onclick="addProtein('달걀 1개', 6.5)">
       <span class="quick-name">달걀 1개</span>
       <span class="quick-val">+6.5g</span>
@@ -390,7 +548,7 @@
       <span class="quick-val">+9.5g</span>
     </button>
 
-    <!-- 4. 라벤더 테마 -->
+    <!-- 로열 바이올렛 그룹 (호두, 크래미, 유부) -->
     <button type="button" class="quick-btn theme-purple" onclick="addProtein('호두 한 줌', 4.3)">
       <span class="quick-name">호두 한 줌</span>
       <span class="quick-val">+4.3g</span>
@@ -406,17 +564,21 @@
   </div>
 
   <!-- 직접 음식 입력 -->
-  <div class="section-title">직접 음식 입력</div>
-  <div class="input-box">
+  <div class="section-header">
+    <span class="section-title">직접 음식 입력</span>
+  </div>
+  <div class="input-card">
     <div class="input-row">
-      <input type="text" id="customName" class="input-field" placeholder="음식명 (선택)">
+      <input type="text" id="customName" class="input-field" placeholder="음식명 (예: 소고기)">
       <input type="number" id="customAmount" class="input-field" placeholder="단백질 g" step="0.1">
     </div>
-    <button type="button" class="add-submit-btn" onclick="addCustom()">추가하기</button>
+    <button type="button" class="add-btn" onclick="addCustom()">기록 추가하기</button>
   </div>
 
   <!-- 오늘의 섭취 내역 -->
-  <div class="section-title">오늘의 섭취 내역</div>
+  <div class="section-header">
+    <span class="section-title">오늘의 섭취 내역</span>
+  </div>
   <div class="history-card" id="historyList">
     <div class="history-empty">오늘 기록된 단백질 섭취 내역이 없습니다.</div>
   </div>
@@ -424,14 +586,17 @@
   <script>
     const todayKey = new Date().toISOString().slice(0, 10);
 
+    // 날짜 헤더 표시
     const now = new Date();
-    document.getElementById('dateBadge').innerText = `${now.getMonth() + 1}월 ${now.getDate()}일`;
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    document.getElementById('dateBadge').innerText = `${now.getMonth() + 1}월 ${now.getDate()}일 (${days[now.getDay()]})`;
 
     let target = parseFloat(localStorage.getItem('protein_target') || '70');
     let history = JSON.parse(localStorage.getItem('protein_history_' + todayKey) || '[]');
 
     function updateUI() {
       document.getElementById('targetAmount').innerText = target;
+      document.getElementById('targetAmountDisplay').innerText = target;
       
       const total = history.reduce((sum, item) => sum + item.amount, 0);
       const roundedTotal = Math.round(total * 10) / 10;
@@ -439,21 +604,46 @@
 
       const pct = Math.min(100, Math.round((total / target) * 100));
       document.getElementById('percentText').innerText = `${pct}%`;
-      document.getElementById('progressFill').style.width = `${pct}%`;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+
+      const remain = Math.max(0, Math.round((target - total) * 10) / 10);
+      document.getElementById('remainText').innerText = remain === 0 ? "🎉 목표 달성 완료!" : `남은 양: ${remain}g`;
+
+      const statusBadge = document.getElementById('statusBadge');
+      if (pct >= 100) {
+        statusBadge.innerText = '목표 달성!';
+        statusBadge.style.background = '#dcfce7';
+        statusBadge.style.color = '#15803d';
+      } else if (pct >= 50) {
+        statusBadge.innerText = '절반 달성';
+        statusBadge.style.background = '#fef9c3';
+        statusBadge.style.color = '#854d0e';
+      } else {
+        statusBadge.innerText = '달성 중';
+        statusBadge.style.background = '#eff6ff';
+        statusBadge.style.color = '#1d4ed8';
+      }
 
       const listEl = document.getElementById('historyList');
       if (history.length === 0) {
         listEl.innerHTML = '<div class="history-empty">오늘 기록된 단백질 섭취 내역이 없습니다.</div>';
       } else {
-        listEl.innerHTML = history.map((item, idx) => `
-          <div class="history-item">
-            <span class="item-name">${item.name}</span>
-            <div class="item-val-wrap">
-              <span class="item-val">+${item.amount}g</span>
-              <button class="item-del-btn" onclick="deleteItem(${idx})">삭제</button>
+        listEl.innerHTML = history.map((item, idx) => {
+          const itemTime = item.time ? new Date(item.time) : null;
+          const timeStr = itemTime ? `${String(itemTime.getHours()).padStart(2, '0')}:${String(itemTime.getMinutes()).padStart(2, '0')}` : '';
+          return `
+            <div class="history-item">
+              <div class="item-left">
+                <span class="item-name">${item.name}</span>
+                ${timeStr ? `<span class="item-time">${timeStr} 기록</span>` : ''}
+              </div>
+              <div class="item-right">
+                <span class="item-amount">+${item.amount}g</span>
+                <button class="item-del-btn" onclick="deleteItem(${idx})">삭제</button>
+              </div>
             </div>
-          </div>
-        `).reverse().join('');
+          `;
+        }).reverse().join('');
       }
     }
 
