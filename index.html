@@ -12,9 +12,9 @@
   <meta name="application-name" content="단백질트래커">
   <meta name="theme-color" content="#f8fafc">
 
-  <!-- 아이폰/갤럭시 공용 인라인 프로틴 쉐이커 앱 아이콘 (별도 파일 불필요) -->
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231e3a8a'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3ClinearGradient id='liquid' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Crect x='68' y='32' width='44' height='16' rx='6' fill='%23f97316'/%3E%3Crect x='82' y='24' width='16' height='12' rx='4' fill='%23ea580c'/%3E%3Cpolygon points='60,54 120,54 110,146 70,146' fill='%23ffffff' opacity='0.95'/%3E%3Cpolygon points='64,90 116,90 108,142 72,142' fill='url(%23liquid)'/%3E%3Cpolygon points='94,62 82,92 93,92 86,122 102,86 91,86' fill='%23fbbf24'/%3E%3Cline x1='100' y1='102' x2='108' y2='102' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3Cline x1='98' y1='114' x2='106' y2='114' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3Cline x1='96' y1='126' x2='104' y2='126' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3C/svg%3E">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231e3a8a'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3ClinearGradient id='liquid' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Crect x='68' y='32' width='44' height='16' rx='6' fill='%23f97316'/%3E%3Crect x='82' y='24' width='16' height='12' rx='4' fill='%23ea580c'/%3E%3Cpolygon points='60,54 120,54 110,146 70,146' fill='%23ffffff' opacity='0.95'/%3E%3Cpolygon points='64,90 116,90 108,142 72,142' fill='url(%23liquid)'/%3E%3Cpolygon points='94,62 82,92 93,92 86,122 102,86 91,86' fill='%23fbbf24'/%3E%3Cline x1='100' y1='102' x2='108' y2='102' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3Cline x1='98' y1='114' x2='106' y2='114' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3Cline x1='96' y1='126' x2='104' y2='126' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3C/svg%3E">
+  <!-- 아이폰/갤럭시 공용 정식 규격 고화질 PNG 앱 아이콘 연결 -->
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="./apple-touch-icon.png">
 
   <!-- 폰트 불러오기 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -117,4 +117,386 @@
       margin-bottom: 14px;
     }
 
-    .progress-fill
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+
+    .target-change-btn {
+      background: none;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    /* 섹션 공통 타이틀 */
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      padding-left: 2px;
+    }
+
+    /* 간편 즉시 가산 3열 그리드 */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .quick-btn {
+      border-radius: 16px;
+      padding: 14px 6px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: transform 0.1s ease, filter 0.1s ease;
+      touch-action: manipulation;
+    }
+
+    .quick-btn:active {
+      transform: scale(0.96);
+      filter: brightness(0.96);
+    }
+
+    .quick-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      letter-spacing: -0.3px;
+    }
+
+    .quick-val {
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    /* 테마별 파스텔 컬러 블록 */
+    /* 1. 오렌지/코랄 */
+    .theme-coral {
+      background: #fff7ed;
+      border-color: #ffedd5;
+    }
+    .theme-coral .quick-name { color: #9a3412; }
+    .theme-coral .quick-val { color: #ea580c; }
+
+    /* 2. 스카이블루 */
+    .theme-sky {
+      background: #f0f9ff;
+      border-color: #e0f2fe;
+    }
+    .theme-sky .quick-name { color: #075985; }
+    .theme-sky .quick-val { color: #0284c7; }
+
+    /* 3. 웜 옐로우 */
+    .theme-yellow {
+      background: #fefce8;
+      border-color: #fef08a;
+    }
+    .theme-yellow .quick-name { color: #854d0e; }
+    .theme-yellow .quick-val { color: #d97706; }
+
+    /* 4. 부드러운 라벤더 */
+    .theme-purple {
+      background: #faf5ff;
+      border-color: #f3e8ff;
+    }
+    .theme-purple .quick-name { color: #6b21a8; }
+    .theme-purple .quick-val { color: #9333ea; }
+
+    /* 직접 음식 입력 */
+    .input-box {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(148, 163, 184, 0.05);
+      margin-bottom: 24px;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .input-field {
+      width: 100%;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .input-field:focus {
+      border-color: #3b82f6;
+      background: #ffffff;
+    }
+
+    .add-submit-btn {
+      width: 100%;
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .add-submit-btn:active {
+      transform: scale(0.98);
+      background: #1d4ed8;
+    }
+
+    /* 섭취 내역 리스트 */
+    .history-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      min-height: 80px;
+    }
+
+    .history-empty {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      padding: 24px 0;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 4px;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 13px;
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .item-val-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .item-val {
+      font-weight: 700;
+      color: #2563eb;
+    }
+
+    .item-del-btn {
+      background: #fee2e2;
+      border: none;
+      color: #ef4444;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <div class="header">
+    <h1>단백질 트래커</h1>
+    <div class="date-badge" id="dateBadge">오늘</div>
+  </div>
+
+  <!-- 대시보드 카드 -->
+  <div class="dashboard-card">
+    <div class="current-val"><span id="currentAmount" style="font-size: 46px; font-weight: 800; color: #1e3a8a;">0</span><span>g</span></div>
+    <div class="target-desc">목표 <span id="targetAmount">70</span>g 달성 중 (<span id="percentText">0%</span>)</div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <button type="button" class="target-change-btn" onclick="changeTarget()">목표치 변경</button>
+  </div>
+
+  <!-- 간편 즉시 가산 메뉴 (테마별 파스텔 블록) -->
+  <div class="section-title">간편 즉시 가산 메뉴</div>
+  <div class="quick-grid">
+    <!-- 1. 코랄 테마 -->
+    <button type="button" class="quick-btn theme-coral" onclick="addProtein('밀키트', 15)">
+      <span class="quick-name">밀키트</span>
+      <span class="quick-val">+15g</span>
+    </button>
+    <button type="button" class="quick-btn theme-coral" onclick="addProtein('치즈빵', 5)">
+      <span class="quick-name">치즈빵</span>
+      <span class="quick-val">+5g</span>
+    </button>
+    <button type="button" class="quick-btn theme-coral" onclick="addProtein('불고기', 20)">
+      <span class="quick-name">불고기</span>
+      <span class="quick-val">+20g</span>
+    </button>
+
+    <!-- 2. 스카이 블루 테마 -->
+    <button type="button" class="quick-btn theme-sky" onclick="addProtein('닭가슴살 1조각', 23)">
+      <span class="quick-name">닭가슴살 1조각</span>
+      <span class="quick-val">+23g</span>
+    </button>
+    <button type="button" class="quick-btn theme-sky" onclick="addProtein('프로틴 1팩', 20)">
+      <span class="quick-name">프로틴 1팩</span>
+      <span class="quick-val">+20g</span>
+    </button>
+    <button type="button" class="quick-btn theme-sky" onclick="addProtein('두부 반 모', 10)">
+      <span class="quick-name">두부 반 모</span>
+      <span class="quick-val">+10g</span>
+    </button>
+
+    <!-- 3. 옐로우 테마 -->
+    <button type="button" class="quick-btn theme-yellow" onclick="addProtein('달걀 1개', 6.5)">
+      <span class="quick-name">달걀 1개</span>
+      <span class="quick-val">+6.5g</span>
+    </button>
+    <button type="button" class="quick-btn theme-yellow" onclick="addProtein('치킨너겟 1개', 2.4)">
+      <span class="quick-name">치킨너겟 1개</span>
+      <span class="quick-val">+2.4g</span>
+    </button>
+    <button type="button" class="quick-btn theme-yellow" onclick="addProtein('볶은 콩 1주먹', 9.5)">
+      <span class="quick-name">볶은 콩 1주먹</span>
+      <span class="quick-val">+9.5g</span>
+    </button>
+
+    <!-- 4. 라벤더 테마 -->
+    <button type="button" class="quick-btn theme-purple" onclick="addProtein('호두 한 줌', 4.3)">
+      <span class="quick-name">호두 한 줌</span>
+      <span class="quick-val">+4.3g</span>
+    </button>
+    <button type="button" class="quick-btn theme-purple" onclick="addProtein('크래미 1개', 1.6)">
+      <span class="quick-name">크래미 1개</span>
+      <span class="quick-val">+1.6g</span>
+    </button>
+    <button type="button" class="quick-btn theme-purple" onclick="addProtein('유부 1장', 1.4)">
+      <span class="quick-name">유부 1장</span>
+      <span class="quick-val">+1.4g</span>
+    </button>
+  </div>
+
+  <!-- 직접 음식 입력 -->
+  <div class="section-title">직접 음식 입력</div>
+  <div class="input-box">
+    <div class="input-row">
+      <input type="text" id="customName" class="input-field" placeholder="음식명 (선택)">
+      <input type="number" id="customAmount" class="input-field" placeholder="단백질 g" step="0.1">
+    </div>
+    <button type="button" class="add-submit-btn" onclick="addCustom()">추가하기</button>
+  </div>
+
+  <!-- 오늘의 섭취 내역 -->
+  <div class="section-title">오늘의 섭취 내역</div>
+  <div class="history-card" id="historyList">
+    <div class="history-empty">오늘 기록된 단백질 섭취 내역이 없습니다.</div>
+  </div>
+
+  <script>
+    const todayKey = new Date().toISOString().slice(0, 10);
+
+    const now = new Date();
+    document.getElementById('dateBadge').innerText = `${now.getMonth() + 1}월 ${now.getDate()}일`;
+
+    let target = parseFloat(localStorage.getItem('protein_target') || '70');
+    let history = JSON.parse(localStorage.getItem('protein_history_' + todayKey) || '[]');
+
+    function updateUI() {
+      document.getElementById('targetAmount').innerText = target;
+      
+      const total = history.reduce((sum, item) => sum + item.amount, 0);
+      const roundedTotal = Math.round(total * 10) / 10;
+      document.getElementById('currentAmount').innerText = roundedTotal;
+
+      const pct = Math.min(100, Math.round((total / target) * 100));
+      document.getElementById('percentText').innerText = `${pct}%`;
+      document.getElementById('progressFill').style.width = `${pct}%`;
+
+      const listEl = document.getElementById('historyList');
+      if (history.length === 0) {
+        listEl.innerHTML = '<div class="history-empty">오늘 기록된 단백질 섭취 내역이 없습니다.</div>';
+      } else {
+        listEl.innerHTML = history.map((item, idx) => `
+          <div class="history-item">
+            <span class="item-name">${item.name}</span>
+            <div class="item-val-wrap">
+              <span class="item-val">+${item.amount}g</span>
+              <button class="item-del-btn" onclick="deleteItem(${idx})">삭제</button>
+            </div>
+          </div>
+        `).reverse().join('');
+      }
+    }
+
+    function addProtein(name, amount) {
+      history.push({ name, amount: parseFloat(amount), time: Date.now() });
+      localStorage.setItem('protein_history_' + todayKey, JSON.stringify(history));
+      updateUI();
+    }
+
+    function addCustom() {
+      const nameInput = document.getElementById('customName');
+      const valInput = document.getElementById('customAmount');
+      const amount = parseFloat(valInput.value);
+
+      if (isNaN(amount) || amount <= 0) {
+        alert('단백질 함량(g)을 올바르게 입력해주세요.');
+        return;
+      }
+
+      const name = nameInput.value.trim() || '직접 입력';
+      addProtein(name, amount);
+
+      nameInput.value = '';
+      valInput.value = '';
+    }
+
+    function deleteItem(index) {
+      const realIndex = history.length - 1 - index;
+      history.splice(realIndex, 1);
+      localStorage.setItem('protein_history_' + todayKey, JSON.stringify(history));
+      updateUI();
+    }
+
+    function changeTarget() {
+      const newTarget = prompt('새로운 하루 목표 단백질량(g)을 입력하세요:', target);
+      if (newTarget && !isNaN(parseFloat(newTarget)) && parseFloat(newTarget) > 0) {
+        target = parseFloat(newTarget);
+        localStorage.setItem('protein_target', target);
+        updateUI();
+      }
+    }
+
+    updateUI();
+  </script>
+</body>
+</html>
