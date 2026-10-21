@@ -4,288 +4,117 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>단백질 트래커</title>
+
+  <!-- 웹앱 및 모바일 환경 설정 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="단백질트래커">
+  <meta name="application-name" content="단백질트래커">
+  <meta name="theme-color" content="#f8fafc">
+
+  <!-- 아이폰/갤럭시 공용 인라인 프로틴 쉐이커 앱 아이콘 (별도 파일 불필요) -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231e3a8a'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3ClinearGradient id='liquid' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Crect x='68' y='32' width='44' height='16' rx='6' fill='%23f97316'/%3E%3Crect x='82' y='24' width='16' height='12' rx='4' fill='%23ea580c'/%3E%3Cpolygon points='60,54 120,54 110,146 70,146' fill='%23ffffff' opacity='0.95'/%3E%3Cpolygon points='64,90 116,90 108,142 72,142' fill='url(%23liquid)'/%3E%3Cpolygon points='94,62 82,92 93,92 86,122 102,86 91,86' fill='%23fbbf24'/%3E%3Cline x1='100' y1='102' x2='108' y2='102' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3Cline x1='98' y1='114' x2='106' y2='114' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3Cline x1='96' y1='126' x2='104' y2='126' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231e3a8a'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3ClinearGradient id='liquid' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%230284c7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Crect x='68' y='32' width='44' height='16' rx='6' fill='%23f97316'/%3E%3Crect x='82' y='24' width='16' height='12' rx='4' fill='%23ea580c'/%3E%3Cpolygon points='60,54 120,54 110,146 70,146' fill='%23ffffff' opacity='0.95'/%3E%3Cpolygon points='64,90 116,90 108,142 72,142' fill='url(%23liquid)'/%3E%3Cpolygon points='94,62 82,92 93,92 86,122 102,86 91,86' fill='%23fbbf24'/%3E%3Cline x1='100' y1='102' x2='108' y2='102' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3Cline x1='98' y1='114' x2='106' y2='114' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3Cline x1='96' y1='126' x2='104' y2='126' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3C/svg%3E">
+
+  <!-- 폰트 불러오기 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #f8fafc;
-      --card: #ffffff;
-      --primary: #0284c7;
-      --primary-light: #e0f2fe;
-      --text: #0f172a;
-      --muted: #64748b;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-sub: #64748b;
+      --text-muted: #94a3b8;
       --border: #e2e8f0;
-      --radius: 14px;
+      --primary: #2563eb;
+      --radius: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding: 18px 16px 60px; }
-
-    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .header h1 { font-size: 21px; font-weight: 800; color: #1e293b; }
-    .date-badge { font-size: 13px; font-weight: 600; color: #0369a1; background: var(--primary-light); padding: 5px 12px; border-radius: 20px; }
-
-    .dashboard { background: var(--card); border-radius: var(--radius); padding: 18px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.03); margin-bottom: 18px; text-align: center; }
-    .current-val { font-size: 42px; font-weight: 900; color: var(--primary); line-height: 1.1; }
-    .goal-text { font-size: 14px; color: var(--muted); margin: 8px 0 12px; font-weight: 600; }
-    .progress-bar-bg { width: 100%; height: 14px; background: #e2e8f0; border-radius: 7px; overflow: hidden; margin-bottom: 10px; }
-    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #0284c7); width: 0%; transition: width 0.3s ease; }
-    .goal-edit-btn { background: transparent; border: none; font-size: 12px; color: var(--muted); text-decoration: underline; cursor: pointer; }
-
-    .section-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #334155; }
-    .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 18px; }
-    .quick-btn {
-      background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 4px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.15s ease;
-    }
-    .quick-btn:active { transform: scale(0.96); background: var(--primary-light); border-color: var(--primary); }
-    .quick-name { font-size: 12px; font-weight: 700; color: #1e293b; margin-bottom: 3px; text-align: center; }
-    .quick-amount { font-size: 14px; font-weight: 800; color: var(--primary); }
-
-    .custom-input-card { background: var(--card); border-radius: var(--radius); padding: 14px; border: 1px solid var(--border); margin-bottom: 18px; }
-    .input-row { display: flex; gap: 8px; }
-    .input-text { flex: 2; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
-    .input-num { flex: 1.2; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
-    .btn-add { background: #0f172a; color: #ffffff; border: none; padding: 0 16px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; }
-
-    .log-card { background: var(--card); border-radius: var(--radius); padding: 14px 16px; border: 1px solid var(--border); }
-    .log-list { list-style: none; }
-    .log-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
-    .log-item:last-child { border-bottom: none; }
-    .log-info { display: flex; align-items: baseline; gap: 8px; }
-    .log-title { font-size: 14px; font-weight: 600; color: #1e293b; }
-    .log-time { font-size: 11px; color: var(--muted); }
-    .log-right { display: flex; align-items: center; gap: 10px; }
-    .log-amount { font-size: 14px; font-weight: 800; color: var(--primary); }
-    .btn-del { background: transparent; border: none; color: #ef4444; font-size: 12px; cursor: pointer; padding: 4px; }
-
-    .empty-state { text-align: center; color: var(--muted); font-size: 13px; padding: 16px 0; }
-  </style>
-</head>
-<body>
-
-  <div class="header">
-    <h1>단백질 트래커</h1>
-    <span class="date-badge" id="todayText">오늘</span>
-  </div>
-
-  <div class="dashboard">
-    <div class="current-val"><span id="currentProtein">0</span><span style="font-size: 20px; font-weight: 700;">g</span></div>
-    <div class="goal-text">목표 <span id="goalProtein">70</span>g 달성 중 (<span id="percentText">0%</span>)</div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill" id="progressFill"></div>
-    </div>
-    <button class="goal-edit-btn" onclick="editGoal()">목표치 변경</button>
-  </div>
-
-  <div class="section-title">간편 즉시 가산 메뉴</div>
-  <div class="quick-grid">
-    <button class="quick-btn" style="border-color:#38bdf8; background:#f0f9ff;" onclick="addProtein('밀키트 단백질', 15)">
-      <span class="quick-name">밀키트</span>
-      <span class="quick-amount">+15g</span>
-    </button>
-    <button class="quick-btn" style="border-color:#38bdf8; background:#f0f9ff;" onclick="addProtein('치즈빵', 5)">
-      <span class="quick-name">치즈빵</span>
-      <span class="quick-amount">+5g</span>
-    </button>
-    <button class="quick-btn" style="border-color:#38bdf8; background:#f0f9ff;" onclick="addProtein('불고기', 20)">
-      <span class="quick-name">불고기</span>
-      <span class="quick-amount">+20g</span>
-    </button>
-    <button class="quick-btn" onclick="addProtein('닭가슴살 1조각', 23)">
-      <span class="quick-name">닭가슴살 1조각</span>
-      <span class="quick-amount">+23g</span>
-    </button>
-    <button class="quick-btn" onclick="addProtein('프로틴 음료', 20)">
-      <span class="quick-name">프로틴 1팩</span>
-      <span class="quick-amount">+20g</span>
-    </button>
-    <button class="quick-btn" onclick="addProtein('두부 반 모', 10)">
-      <span class="quick-name">두부 반 모</span>
-      <span class="quick-amount">+10g</span>
-    </button>
-    <button class="quick-btn" onclick="addProtein('달걀 1개', 6.5)">
-      <span class="quick-name">달걀 1개</span>
-      <span class="quick-amount">+6.5g</span>
-    </button>
-    <button class="quick-btn" onclick="addProtein('치킨너겟 1개', 2.4)">
-      <span class="quick-name">치킨너겟 1개</span>
-      <span class="quick-amount">+2.4g</span>
-    </button>
-    <button class="quick-btn" onclick="addProtein('볶은 콩 1주먹', 9.5)">
-      <span class="quick-name">볶은 콩 1주먹</span>
-      <span class="quick-amount">+9.5g</span>
-    </button>
-    <button class="quick-btn" onclick="addProtein('호두 한 줌', 4.3)">
-      <span class="quick-name">호두 한 줌</span>
-      <span class="quick-amount">+4.3g</span>
-    </button>
-    <button class="quick-btn" onclick="addProtein('크래미 1개', 1.6)">
-      <span class="quick-name">크래미 1개</span>
-      <span class="quick-amount">+1.6g</span>
-    </button>
-    <button class="quick-btn" onclick="addProtein('유부 1장', 1.4)">
-      <span class="quick-name">유부 1장</span>
-      <span class="quick-amount">+1.4g</span>
-    </button>
-  </div>
-
-  <div class="section-title">직접 음식 입력</div>
-  <div class="custom-input-card">
-    <div class="input-row">
-      <input type="text" id="foodName" class="input-text" placeholder="음식명 (선택)">
-      <input type="number" id="proteinGram" class="input-num" placeholder="단백질 g" step="0.1" inputmode="decimal">
-      <button class="btn-add" onclick="handleManualAdd()">추가</button>
-    </div>
-  </div>
-
-  <div class="section-title">오늘의 섭취 내역</div>
-  <div class="log-card">
-    <ul class="log-list" id="logList"></ul>
-  </div>
-
-  <script>
-    const STORAGE_KEY = 'protein_tracker_data_v3';
-    const GOAL_KEY = 'protein_tracker_goal_v3';
-
-    let logs = [];
-    let goal = 70;
-
-    function getTodayKey() {
-      const d = new Date();
-      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    function init() {
-      const d = new Date();
-      const todayEl = document.getElementById('todayText');
-      if (todayEl) todayEl.innerText = `${d.getMonth() + 1}월 ${d.getDate()}일`;
-
-      try {
-        const savedGoal = localStorage.getItem(GOAL_KEY);
-        if (savedGoal) goal = parseFloat(savedGoal);
-      } catch (e) {}
-
-      const goalEl = document.getElementById('goalProtein');
-      if (goalEl) goalEl.innerText = goal;
-
-      loadLogs();
-      render();
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 20px 16px 40px;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.4;
     }
 
-    function loadLogs() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        const data = raw ? JSON.parse(raw) : {};
-        logs = data[getTodayKey()] || [];
-      } catch (e) {
-        logs = [];
-      }
+    /* 상단 헤더 */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
     }
 
-    function saveLogs() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        const data = raw ? JSON.parse(raw) : {};
-        data[getTodayKey()] = logs;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      } catch (e) {}
+    .header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
 
-    function addProtein(name, gram) {
-      const now = new Date();
-      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-
-      logs.unshift({
-        id: Date.now(),
-        name: name,
-        gram: parseFloat(gram),
-        time: timeStr
-      });
-
-      saveLogs();
-      render();
+    .date-badge {
+      background: #eff6ff;
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid #bfdbfe;
     }
 
-    function handleManualAdd() {
-      const nameInput = document.getElementById('foodName');
-      const gramInput = document.getElementById('proteinGram');
-
-      const name = nameInput.value.trim() || '식사/간식';
-      const gram = parseFloat(gramInput.value);
-
-      if (isNaN(gram) || gram <= 0) {
-        alert('단백질 함량(g)을 올바르게 입력해 주세요.');
-        gramInput.focus();
-        return;
-      }
-
-      addProtein(name, gram);
-      nameInput.value = '';
-      gramInput.value = '';
+    /* 대시보드 카드 */
+    .dashboard-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 26px 20px 20px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(148, 163, 184, 0.08);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
     }
 
-    function deleteLog(id) {
-      logs = logs.filter(item => item.id !== id);
-      saveLogs();
-      render();
+    .current-val {
+      font-size: 46px;
+      font-weight: 800;
+      color: #1e3a8a;
+      line-height: 1;
+      margin-bottom: 8px;
     }
 
-    function editGoal() {
-      const newGoal = prompt('새로운 일일 단백질 목표(g)를 입력해 주세요:', goal);
-      if (newGoal && !isNaN(newGoal) && parseFloat(newGoal) > 0) {
-        goal = parseFloat(newGoal);
-        try {
-          localStorage.setItem(GOAL_KEY, goal);
-        } catch (e) {}
-        document.getElementById('goalProtein').innerText = goal;
-        render();
-      }
+    .current-val span {
+      font-size: 24px;
+      font-weight: 700;
+      color: #3b82f6;
+      margin-left: 2px;
     }
 
-    function render() {
-      const total = logs.reduce((sum, item) => sum + item.gram, 0);
-      const displayTotal = Number.isInteger(total) ? total : total.toFixed(1);
-      
-      const currentEl = document.getElementById('currentProtein');
-      if (currentEl) currentEl.innerText = displayTotal;
-
-      const percent = Math.min(100, Math.round((total / goal) * 100));
-      const percentEl = document.getElementById('percentText');
-      if (percentEl) percentEl.innerText = `${percent}%`;
-
-      const progressEl = document.getElementById('progressFill');
-      if (progressEl) progressEl.style.width = `${percent}%`;
-
-      const listEl = document.getElementById('logList');
-      if (!listEl) return;
-
-      if (logs.length === 0) {
-        listEl.innerHTML = '<div class="empty-state">오늘 기록된 단백질 섭취 내역이 없습니다.</div>';
-        return;
-      }
-
-      listEl.innerHTML = logs.map(item => `
-        <li class="log-item">
-          <div class="log-info">
-            <span class="log-title">${escapeHtml(item.name)}</span>
-            <span class="log-time">${item.time}</span>
-          </div>
-          <div class="log-right">
-            <span class="log-amount">+${item.gram}g</span>
-            <button class="btn-del" onclick="deleteLog(${item.id})">삭제</button>
-          </div>
-        </li>
-      `).join('');
+    .target-desc {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-sub);
+      margin-bottom: 16px;
     }
 
-    function escapeHtml(text) {
-      return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    /* 프로그레스 바 */
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: #f1f5f9;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 14px;
     }
 
-    window.onload = init;
-  </script>
-</body>
-</html>
+    .progress-fill
