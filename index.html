@@ -26,7 +26,6 @@
     .header h1 { font-size: 21px; font-weight: 800; color: #1e293b; }
     .date-badge { font-size: 13px; font-weight: 600; color: #0369a1; background: var(--primary-light); padding: 5px 12px; border-radius: 20px; }
 
-    /* 대시보드 진행률 */
     .dashboard { background: var(--card); border-radius: var(--radius); padding: 18px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.03); margin-bottom: 18px; text-align: center; }
     .current-val { font-size: 42px; font-weight: 900; color: var(--primary); line-height: 1.1; }
     .goal-text { font-size: 14px; color: var(--muted); margin: 8px 0 12px; font-weight: 600; }
@@ -34,7 +33,6 @@
     .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #0284c7); width: 0%; transition: width 0.3s ease; }
     .goal-edit-btn { background: transparent; border: none; font-size: 12px; color: var(--muted); text-decoration: underline; cursor: pointer; }
 
-    /* 간편 즉시 가산 메뉴 그리드 */
     .section-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: #334155; }
     .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 18px; }
     .quick-btn {
@@ -46,14 +44,12 @@
     .quick-name { font-size: 12px; font-weight: 700; color: #1e293b; margin-bottom: 3px; text-align: center; }
     .quick-amount { font-size: 14px; font-weight: 800; color: var(--primary); }
 
-    /* 직접 입력 폼 */
     .custom-input-card { background: var(--card); border-radius: var(--radius); padding: 14px; border: 1px solid var(--border); margin-bottom: 18px; }
     .input-row { display: flex; gap: 8px; }
     .input-text { flex: 2; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
     .input-num { flex: 1.2; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
     .btn-add { background: #0f172a; color: #ffffff; border: none; padding: 0 16px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; }
 
-    /* 기록 목록 */
     .log-card { background: var(--card); border-radius: var(--radius); padding: 14px 16px; border: 1px solid var(--border); }
     .log-list { list-style: none; }
     .log-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
@@ -72,4 +68,224 @@
 
   <div class="header">
     <h1>단백질 트래커</h1>
-    <span class="date-badge" id="todayText">오늘
+    <span class="date-badge" id="todayText">오늘</span>
+  </div>
+
+  <div class="dashboard">
+    <div class="current-val"><span id="currentProtein">0</span><span style="font-size: 20px; font-weight: 700;">g</span></div>
+    <div class="goal-text">목표 <span id="goalProtein">70</span>g 달성 중 (<span id="percentText">0%</span>)</div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <button class="goal-edit-btn" onclick="editGoal()">목표치 변경</button>
+  </div>
+
+  <div class="section-title">간편 즉시 가산 메뉴</div>
+  <div class="quick-grid">
+    <button class="quick-btn" style="border-color:#38bdf8; background:#f0f9ff;" onclick="addProtein('밀키트 단백질', 15)">
+      <span class="quick-name">밀키트</span>
+      <span class="quick-amount">+15g</span>
+    </button>
+    <button class="quick-btn" style="border-color:#38bdf8; background:#f0f9ff;" onclick="addProtein('치즈빵', 5)">
+      <span class="quick-name">치즈빵</span>
+      <span class="quick-amount">+5g</span>
+    </button>
+    <button class="quick-btn" style="border-color:#38bdf8; background:#f0f9ff;" onclick="addProtein('불고기', 20)">
+      <span class="quick-name">불고기</span>
+      <span class="quick-amount">+20g</span>
+    </button>
+    <button class="quick-btn" onclick="addProtein('닭가슴살 1조각', 23)">
+      <span class="quick-name">닭가슴살 1조각</span>
+      <span class="quick-amount">+23g</span>
+    </button>
+    <button class="quick-btn" onclick="addProtein('프로틴 음료', 20)">
+      <span class="quick-name">프로틴 1팩</span>
+      <span class="quick-amount">+20g</span>
+    </button>
+    <button class="quick-btn" onclick="addProtein('두부 반 모', 10)">
+      <span class="quick-name">두부 반 모</span>
+      <span class="quick-amount">+10g</span>
+    </button>
+    <button class="quick-btn" onclick="addProtein('달걀 1개', 6.5)">
+      <span class="quick-name">달걀 1개</span>
+      <span class="quick-amount">+6.5g</span>
+    </button>
+    <button class="quick-btn" onclick="addProtein('치킨너겟 1개', 2.4)">
+      <span class="quick-name">치킨너겟 1개</span>
+      <span class="quick-amount">+2.4g</span>
+    </button>
+    <button class="quick-btn" onclick="addProtein('볶은 콩 1주먹', 9.5)">
+      <span class="quick-name">볶은 콩 1주먹</span>
+      <span class="quick-amount">+9.5g</span>
+    </button>
+    <button class="quick-btn" onclick="addProtein('호두 한 줌', 4.3)">
+      <span class="quick-name">호두 한 줌</span>
+      <span class="quick-amount">+4.3g</span>
+    </button>
+    <button class="quick-btn" onclick="addProtein('크래미 1개', 1.6)">
+      <span class="quick-name">크래미 1개</span>
+      <span class="quick-amount">+1.6g</span>
+    </button>
+    <button class="quick-btn" onclick="addProtein('유부 1장', 1.4)">
+      <span class="quick-name">유부 1장</span>
+      <span class="quick-amount">+1.4g</span>
+    </button>
+  </div>
+
+  <div class="section-title">직접 음식 입력</div>
+  <div class="custom-input-card">
+    <div class="input-row">
+      <input type="text" id="foodName" class="input-text" placeholder="음식명 (선택)">
+      <input type="number" id="proteinGram" class="input-num" placeholder="단백질 g" step="0.1" inputmode="decimal">
+      <button class="btn-add" onclick="handleManualAdd()">추가</button>
+    </div>
+  </div>
+
+  <div class="section-title">오늘의 섭취 내역</div>
+  <div class="log-card">
+    <ul class="log-list" id="logList"></ul>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'protein_tracker_data_v3';
+    const GOAL_KEY = 'protein_tracker_goal_v3';
+
+    let logs = [];
+    let goal = 70;
+
+    function getTodayKey() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    function init() {
+      const d = new Date();
+      const todayEl = document.getElementById('todayText');
+      if (todayEl) todayEl.innerText = `${d.getMonth() + 1}월 ${d.getDate()}일`;
+
+      try {
+        const savedGoal = localStorage.getItem(GOAL_KEY);
+        if (savedGoal) goal = parseFloat(savedGoal);
+      } catch (e) {}
+
+      const goalEl = document.getElementById('goalProtein');
+      if (goalEl) goalEl.innerText = goal;
+
+      loadLogs();
+      render();
+    }
+
+    function loadLogs() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const data = raw ? JSON.parse(raw) : {};
+        logs = data[getTodayKey()] || [];
+      } catch (e) {
+        logs = [];
+      }
+    }
+
+    function saveLogs() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const data = raw ? JSON.parse(raw) : {};
+        data[getTodayKey()] = logs;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {}
+    }
+
+    function addProtein(name, gram) {
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+      logs.unshift({
+        id: Date.now(),
+        name: name,
+        gram: parseFloat(gram),
+        time: timeStr
+      });
+
+      saveLogs();
+      render();
+    }
+
+    function handleManualAdd() {
+      const nameInput = document.getElementById('foodName');
+      const gramInput = document.getElementById('proteinGram');
+
+      const name = nameInput.value.trim() || '식사/간식';
+      const gram = parseFloat(gramInput.value);
+
+      if (isNaN(gram) || gram <= 0) {
+        alert('단백질 함량(g)을 올바르게 입력해 주세요.');
+        gramInput.focus();
+        return;
+      }
+
+      addProtein(name, gram);
+      nameInput.value = '';
+      gramInput.value = '';
+    }
+
+    function deleteLog(id) {
+      logs = logs.filter(item => item.id !== id);
+      saveLogs();
+      render();
+    }
+
+    function editGoal() {
+      const newGoal = prompt('새로운 일일 단백질 목표(g)를 입력해 주세요:', goal);
+      if (newGoal && !isNaN(newGoal) && parseFloat(newGoal) > 0) {
+        goal = parseFloat(newGoal);
+        try {
+          localStorage.setItem(GOAL_KEY, goal);
+        } catch (e) {}
+        document.getElementById('goalProtein').innerText = goal;
+        render();
+      }
+    }
+
+    function render() {
+      const total = logs.reduce((sum, item) => sum + item.gram, 0);
+      const displayTotal = Number.isInteger(total) ? total : total.toFixed(1);
+      
+      const currentEl = document.getElementById('currentProtein');
+      if (currentEl) currentEl.innerText = displayTotal;
+
+      const percent = Math.min(100, Math.round((total / goal) * 100));
+      const percentEl = document.getElementById('percentText');
+      if (percentEl) percentEl.innerText = `${percent}%`;
+
+      const progressEl = document.getElementById('progressFill');
+      if (progressEl) progressEl.style.width = `${percent}%`;
+
+      const listEl = document.getElementById('logList');
+      if (!listEl) return;
+
+      if (logs.length === 0) {
+        listEl.innerHTML = '<div class="empty-state">오늘 기록된 단백질 섭취 내역이 없습니다.</div>';
+        return;
+      }
+
+      listEl.innerHTML = logs.map(item => `
+        <li class="log-item">
+          <div class="log-info">
+            <span class="log-title">${escapeHtml(item.name)}</span>
+            <span class="log-time">${item.time}</span>
+          </div>
+          <div class="log-right">
+            <span class="log-amount">+${item.gram}g</span>
+            <button class="btn-del" onclick="deleteLog(${item.id})">삭제</button>
+          </div>
+        </li>
+      `).join('');
+    }
+
+    function escapeHtml(text) {
+      return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
