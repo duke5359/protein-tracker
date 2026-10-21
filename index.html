@@ -89,7 +89,7 @@
       gap: 5px;
     }
 
-    /* 메인 대시보드 (애플 피트니스 감성) */
+    /* 메인 대시보드 */
     .dashboard-card {
       background: #ffffff;
       border-radius: var(--radius-lg);
@@ -176,7 +176,7 @@
       font-size: 12px;
     }
 
-    /* 선명하고 매끄러운 프로그레스 바 */
+    /* 진행률 게이지 */
     .progress-container {
       position: relative;
       width: 100%;
@@ -212,7 +212,7 @@
       font-weight: 900;
     }
 
-    /* 섹션 제목 */
+    /* 섹션 공통 헤더 */
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -234,7 +234,7 @@
       color: var(--text-muted);
     }
 
-    /* 12개 간편 가산 그리드 */
+    /* 12개 간편 계산 그리드 (심플하고 깔끔한 통일 디자인) */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -245,7 +245,7 @@
     .quick-btn {
       background: #ffffff;
       border-radius: var(--radius-md);
-      padding: 15px 8px;
+      padding: 14px 6px;
       text-align: center;
       cursor: pointer;
       display: flex;
@@ -253,75 +253,35 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
-      border: 1.5px solid transparent;
-      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+      border: 1px solid var(--border-soft);
+      transition: transform 0.12s ease, border-color 0.15s, background-color 0.15s;
       touch-action: manipulation;
     }
 
     .quick-btn:active {
       transform: scale(0.95);
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+      background: #f8fafc;
+      border-color: #cbd5e1;
     }
 
     .quick-name {
       font-size: 13px;
       font-weight: 700;
-      color: #1e293b;
+      color: #334155;
       letter-spacing: -0.3px;
     }
 
+    /* 통일된 깔끔한 블루-슬레이트 톤 뱃지 */
     .quick-val {
-      font-size: 15px;
-      font-weight: 900;
+      font-size: 14px;
+      font-weight: 800;
       padding: 3px 10px;
       border-radius: 12px;
+      background: #f1f5f9;
+      color: #2563eb;
       display: inline-block;
       line-height: 1.2;
-    }
-
-    /* 1. 코랄 앤 앰버 (육류/식사류) */
-    .theme-coral {
-      background: #fffaf5;
-      border-color: #ffedd5;
-    }
-    .theme-coral .quick-name { color: #7c2d12; }
-    .theme-coral .quick-val {
-      background: #ffedd5;
-      color: #ea580c;
-    }
-
-    /* 2. 오션 스카이 (닭가슴살/프로틴/두부) */
-    .theme-sky {
-      background: #f8fafc;
-      border-color: #e0f2fe;
-    }
-    .theme-sky .quick-name { color: #0c4a6e; }
-    .theme-sky .quick-val {
-      background: #e0f2fe;
-      color: #0284c7;
-    }
-
-    /* 3. 골든 옐로우 (달걀/너겟/콩) */
-    .theme-yellow {
-      background: #fefdf5;
-      border-color: #fef08a;
-    }
-    .theme-yellow .quick-name { color: #713f12; }
-    .theme-yellow .quick-val {
-      background: #fef08a;
-      color: #b45309;
-    }
-
-    /* 4. 로열 바이올렛 (견과/어육/유부) */
-    .theme-purple {
-      background: #faf7fd;
-      border-color: #f3e8ff;
-    }
-    .theme-purple .quick-name { color: #581c87; }
-    .theme-purple .quick-val {
-      background: #f3e8ff;
-      color: #7e22ce;
     }
 
     /* 직접 음식 입력 카드 */
@@ -384,7 +344,7 @@
       background: #1e293b;
     }
 
-    /* 섭취 내역 카드 */
+    /* 오늘의 섭취 내역 */
     .history-card {
       background: #ffffff;
       border-radius: var(--radius-md);
@@ -392,6 +352,26 @@
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
       border: 1px solid var(--border-soft);
       min-height: 80px;
+    }
+
+    /* 전체 삭제 버튼 */
+    .clear-all-btn {
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s;
+    }
+
+    .clear-all-btn:active {
+      background: #fca5a5;
     }
 
     .history-empty {
@@ -500,64 +480,60 @@
     </div>
   </div>
 
-  <!-- 간편 즉시 가산 메뉴 -->
+  <!-- 간편 계산 메뉴 (심플하게 통일된 디자인) -->
   <div class="section-header">
-    <span class="section-title">간편 즉시 가산</span>
+    <span class="section-title">간편 계산</span>
     <span class="section-hint">터치 시 즉시 합산</span>
   </div>
   <div class="quick-grid">
-    <!-- 코랄 그룹 (밀키트, 치즈빵, 불고기) -->
-    <button type="button" class="quick-btn theme-coral" onclick="addProtein('밀키트', 15)">
+    <button type="button" class="quick-btn" onclick="addProtein('밀키트', 15)">
       <span class="quick-name">밀키트</span>
       <span class="quick-val">+15g</span>
     </button>
-    <button type="button" class="quick-btn theme-coral" onclick="addProtein('치즈빵', 5)">
+    <button type="button" class="quick-btn" onclick="addProtein('치즈빵', 5)">
       <span class="quick-name">치즈빵</span>
       <span class="quick-val">+5g</span>
     </button>
-    <button type="button" class="quick-btn theme-coral" onclick="addProtein('불고기', 20)">
+    <button type="button" class="quick-btn" onclick="addProtein('불고기', 20)">
       <span class="quick-name">불고기</span>
       <span class="quick-val">+20g</span>
     </button>
 
-    <!-- 스카이 블루 그룹 (닭가슴살, 프로틴, 두부) -->
-    <button type="button" class="quick-btn theme-sky" onclick="addProtein('닭가슴살 1조각', 23)">
+    <button type="button" class="quick-btn" onclick="addProtein('닭가슴살 1조각', 23)">
       <span class="quick-name">닭가슴살 1조각</span>
       <span class="quick-val">+23g</span>
     </button>
-    <button type="button" class="quick-btn theme-sky" onclick="addProtein('프로틴 1팩', 20)">
+    <button type="button" class="quick-btn" onclick="addProtein('프로틴 1팩', 20)">
       <span class="quick-name">프로틴 1팩</span>
       <span class="quick-val">+20g</span>
     </button>
-    <button type="button" class="quick-btn theme-sky" onclick="addProtein('두부 반 모', 10)">
+    <button type="button" class="quick-btn" onclick="addProtein('두부 반 모', 10)">
       <span class="quick-name">두부 반 모</span>
       <span class="quick-val">+10g</span>
     </button>
 
-    <!-- 웜 옐로우 그룹 (달걀, 치킨너겟, 볶은 콩) -->
-    <button type="button" class="quick-btn theme-yellow" onclick="addProtein('달걀 1개', 6.5)">
+    <button type="button" class="quick-btn" onclick="addProtein('달걀 1개', 6.5)">
       <span class="quick-name">달걀 1개</span>
       <span class="quick-val">+6.5g</span>
     </button>
-    <button type="button" class="quick-btn theme-yellow" onclick="addProtein('치킨너겟 1개', 2.4)">
+    <button type="button" class="quick-btn" onclick="addProtein('치킨너겟 1개', 2.4)">
       <span class="quick-name">치킨너겟 1개</span>
       <span class="quick-val">+2.4g</span>
     </button>
-    <button type="button" class="quick-btn theme-yellow" onclick="addProtein('볶은 콩 1주먹', 9.5)">
+    <button type="button" class="quick-btn" onclick="addProtein('볶은 콩 1주먹', 9.5)">
       <span class="quick-name">볶은 콩 1주먹</span>
       <span class="quick-val">+9.5g</span>
     </button>
 
-    <!-- 로열 바이올렛 그룹 (호두, 크래미, 유부) -->
-    <button type="button" class="quick-btn theme-purple" onclick="addProtein('호두 한 줌', 4.3)">
+    <button type="button" class="quick-btn" onclick="addProtein('호두 한 줌', 4.3)">
       <span class="quick-name">호두 한 줌</span>
       <span class="quick-val">+4.3g</span>
     </button>
-    <button type="button" class="quick-btn theme-purple" onclick="addProtein('크래미 1개', 1.6)">
+    <button type="button" class="quick-btn" onclick="addProtein('크래미 1개', 1.6)">
       <span class="quick-name">크래미 1개</span>
       <span class="quick-val">+1.6g</span>
     </button>
-    <button type="button" class="quick-btn theme-purple" onclick="addProtein('유부 1장', 1.4)">
+    <button type="button" class="quick-btn" onclick="addProtein('유부 1장', 1.4)">
       <span class="quick-name">유부 1장</span>
       <span class="quick-val">+1.4g</span>
     </button>
@@ -575,9 +551,10 @@
     <button type="button" class="add-btn" onclick="addCustom()">기록 추가하기</button>
   </div>
 
-  <!-- 오늘의 섭취 내역 -->
+  <!-- 오늘의 섭취 내역 (전체 삭제 버튼 추가) -->
   <div class="section-header">
     <span class="section-title">오늘의 섭취 내역</span>
+    <button type="button" class="clear-all-btn" id="clearAllBtn" onclick="clearAllHistory()">🗑️ 전체 기록 삭제</button>
   </div>
   <div class="history-card" id="historyList">
     <div class="history-empty">오늘 기록된 단백질 섭취 내역이 없습니다.</div>
@@ -622,6 +599,12 @@
         statusBadge.innerText = '달성 중';
         statusBadge.style.background = '#eff6ff';
         statusBadge.style.color = '#1d4ed8';
+      }
+
+      // 내역 유무에 따른 전체 삭제 버튼 표시
+      const clearBtn = document.getElementById('clearAllBtn');
+      if (clearBtn) {
+        clearBtn.style.display = history.length > 0 ? 'inline-flex' : 'none';
       }
 
       const listEl = document.getElementById('historyList');
@@ -675,6 +658,15 @@
       history.splice(realIndex, 1);
       localStorage.setItem('protein_history_' + todayKey, JSON.stringify(history));
       updateUI();
+    }
+
+    // 전체 기록 한 번에 삭제
+    function clearAllHistory() {
+      if (confirm('오늘 기록된 모든 단백질 섭취 내역을 삭제하시겠습니까?')) {
+        history = [];
+        localStorage.removeItem('protein_history_' + todayKey);
+        updateUI();
+      }
     }
 
     function changeTarget() {
